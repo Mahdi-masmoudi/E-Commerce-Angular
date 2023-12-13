@@ -1,0 +1,8 @@
+a {
+  color: white !important;
+}
+
+/* Optionally, you can style the active link differently */
+a.active {
+  color: blanchedalmond;
+}

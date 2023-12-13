@@ -1,0 +1,62 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" (click)="openModal()">
+  <i class="bi bi-plus-circle-fill"></i>
+  Nouveau Produit
+</button>
+<!-- Modal -->
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{ display: display }">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Ajout scategorie</h4>
+        <button
+          type="button"
+          class="btn btn-default"
+          arialabel="Close"
+          (click)="closeModal()"
+        >
+          <span ariahidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <template *ngTemplateOutlet="formProduct"></template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModal()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Form -->
+<ng-template #formProduct>
+  <form (ngSubmit)="ajoutscat()">
+    <div class="mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="nomscategorie"
+        name="nomscategorie"
+        placeholder="nomscategorie"
+        [(ngModel)]="scategorie.nomscategorie"
+      />
+    </div>
+    <div>
+      <file-pond #myPond [options]="pondOptions"> </file-pond>
+    </div>
+    <div class="mb-3">
+      Catégories :
+      <select name="scategorieID" class="form-control" [(ngModel)]="categories">
+        <option *ngFor="let sd of categories" value="{{ sd._id }}">
+          {{ sd.nomcategorie }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-success" (clic)="ajoutscat()">
+        Enregistrer
+      </button>
+    </div>
+  </form>
+</ng-template>

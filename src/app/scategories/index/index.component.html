@@ -1,0 +1,54 @@
+<div class="container">
+  <h2>Listes Scategories</h2>
+  <div>
+    <app-create></app-create>
+  </div>
+  <div>
+    <!-- Champ de recherche -->
+    <input matInput (keyup)="filter($event)" placeholder="Rechercher" />
+  </div>
+  <table
+    mat-table
+    [dataSource]="scategorie"
+    class="mat-elevation-z8"
+    #mytable
+    matSort
+  >
+    <!-- En-têtes de colonnes -->
+
+    <ng-container matColumnDef="imagescategorie">
+      <th mat-header-cell *matHeaderCellDef>Image</th>
+      <td mat-cell *matCellDef="let t">
+        <img src="{{ t.imagescategorie }}" alt="" width="80" height="80" />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="nomscategorie">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>nom scategorie</th>
+
+      <td mat-cell *matCellDef="let t">{{ t.nomscategorie }}</td>
+    </ng-container>
+    <ng-container matColumnDef="_id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+
+      <td mat-cell *matCellDef="let t">
+        <app-view [scategorieId]="t._id"></app-view>
+        <!-- <app-edit [productId]="t._id"></app-edit>  -->
+        <button
+          type="button"
+          (click)="deleteScat(t._id)"
+          class="btn btn-default"
+        >
+          <i class="bi bi-trash-fill" style="color: red"></i>
+        </button>
+      </td>
+    </ng-container>
+    <!-- Définition des colonnes -->
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+  <mat-paginator
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

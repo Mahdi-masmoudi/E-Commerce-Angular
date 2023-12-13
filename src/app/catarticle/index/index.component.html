@@ -1,0 +1,17 @@
+<!-- categorie-article-list.component.html -->
+
+<div class="categorie-list">
+  <h2>Liste des Catégories</h2>
+  <ul>
+    <li *ngFor="let categorieItem of categories">
+      <h3>{{ categorieItem.nomcategorie }}</h3>
+      <ul>
+        <li *ngFor="let article of products">
+          <h4>{{ article.designation }}</h4>
+          <p>Prix: {{ article.prix }}</p>
+          <p>Marque: {{ article.marque }}</p>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
